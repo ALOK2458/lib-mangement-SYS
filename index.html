@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaf &amp; Ledger | Library Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#dashboard" aria-label="Leaf and Ledger home">
+          <span class="brand-mark">L<span>+</span></span>
+          <span><strong>leaf &amp; ledger</strong><small>community library</small></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <p class="nav-label">Workspace</p>
+          <a class="nav-item active" href="#dashboard" data-view="dashboard"><span>⌂</span> Overview</a>
+          <a class="nav-item" href="#catalog" data-view="catalog"><span>▤</span> Catalog</a>
+          <a class="nav-item" href="#members" data-view="members"><span>♙</span> Members</a>
+          <a class="nav-item" href="#activity" data-view="activity"><span>↗</span> Activity</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="tip-card"><span class="tip-icon">✦</span><strong>Small actions,<br />big impact.</strong><p>Every book borrowed helps keep our shelves moving.</p></div>
+          <button class="profile-button" type="button"><span class="avatar">JM</span><span><strong>Jordan Miller</strong><small>Administrator</small></span><span class="dots">•••</span></button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div><p class="eyebrow">Saturday, September 20, 2026</p><h1 id="page-title">Good morning, Jordan <span>✦</span></h1></div>
+          <div class="top-actions"><button class="icon-button" aria-label="Notifications" type="button">♧<i></i></button><button class="outline-button" id="add-book-top" type="button">＋ Add book</button></div>
+        </header>
+
+        <section class="view active-view" id="dashboard-view" data-view-panel="dashboard">
+          <div class="section-heading"><div><h2>Library overview</h2><p>A clear view of what is happening across your shelves.</p></div><button class="date-button" type="button">This month <span>⌄</span></button></div>
+          <div class="stat-grid">
+            <article class="stat-card cream"><div class="stat-icon">▤</div><p>Total books</p><strong id="total-books">1,248</strong><small><b>↑ 8.2%</b> vs last month</small></article>
+            <article class="stat-card green"><div class="stat-icon">↗</div><p>Books on loan</p><strong id="loaned-books">86</strong><small><b>↑ 12.4%</b> vs last month</small></article>
+            <article class="stat-card peach"><div class="stat-icon">♙</div><p>Active members</p><strong id="active-members">324</strong><small><b>↑ 4.6%</b> vs last month</small></article>
+            <article class="stat-card lavender"><div class="stat-icon">◷</div><p>Overdue returns</p><strong id="overdue-books">12</strong><small class="warning"><b>↓ 2.1%</b> vs last month</small></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel chart-panel"><div class="panel-heading"><div><h3>Circulation activity</h3><p>Books borrowed and returned</p></div><div class="legend"><span><i class="borrowed"></i> Borrowed</span><span><i class="returned"></i> Returned</span></div></div><div class="chart-wrap"><div class="y-axis"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div class="chart"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><svg viewBox="0 0 700 220" preserveAspectRatio="none" aria-label="Circulation chart"><path class="area" d="M0 160 C40 140 55 158 92 130 S145 154 180 116 S230 125 270 100 S325 130 360 92 S405 110 450 70 S500 85 540 52 S600 84 640 44 S675 55 700 32 L700 220 L0 220Z"></path><path class="line borrowed-line" d="M0 160 C40 140 55 158 92 130 S145 154 180 116 S230 125 270 100 S325 130 360 92 S405 110 450 70 S500 85 540 52 S600 84 640 44 S675 55 700 32"></path><path class="line returned-line" d="M0 178 C40 170 55 174 92 158 S145 180 180 142 S230 155 270 132 S325 158 360 125 S405 140 450 108 S500 125 540 90 S600 120 640 74 S675 95 700 62"></path></svg><div class="x-axis"><span>May 1</span><span>May 8</span><span>May 15</span><span>May 22</span><span>May 29</span></div></div></div></article>
+            <article class="panel activity-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p>Latest library movements</p></div><a href="#activity" data-view="activity">View all</a></div><div class="activity-list" id="activity-list"></div></article>
+          </div>
+          <section class="panel loans-panel"><div class="panel-heading"><div><h3>Active loans</h3><p>Keep an eye on books currently out.</p></div><a href="#catalog" data-view="catalog">View catalog →</a></div><div class="table-scroll"><table><thead><tr><th>Book</th><th>Member</th><th>Borrowed</th><th>Due date</th><th>Status</th><th></th></tr></thead><tbody id="loan-table"></tbody></table></div></section>
+        </section>
+
+        <section class="view" id="catalog-view" data-view-panel="catalog"><div class="section-heading"><div><h2>Catalog</h2><p>Manage every title on your shelves.</p></div><button class="outline-button" id="add-book-catalog" type="button">＋ Add book</button></div><div class="toolbar"><label class="search-box">⌕<input id="catalog-search" type="search" placeholder="Search books, authors, ISBN..." /></label><select id="status-filter"><option value="all">All statuses</option><option value="available">Available</option><option value="loaned">On loan</option></select></div><section class="panel loans-panel"><div class="table-scroll"><table><thead><tr><th>Book</th><th>Author</th><th>Category</th><th>Copies</th><th>Status</th><th></th></tr></thead><tbody id="catalog-table"></tbody></table></div></section></section>
+        <section class="view" id="members-view" data-view-panel="members"><div class="section-heading"><div><h2>Members</h2><p>Keep member records and borrowing activity organized.</p></div><button class="outline-button" id="add-member" type="button">＋ Add member</button></div><div class="member-grid" id="member-grid"></div></section>
+        <section class="view" id="activity-view" data-view-panel="activity"><div class="section-heading"><div><h2>Activity</h2><p>A running history of recent checkouts and returns.</p></div></div><section class="panel loans-panel"><div class="activity-list full" id="full-activity-list"></div></section></section>
+      </main>
+    </div>
+    <dialog id="book-dialog"><form method="dialog" id="book-form"><div class="dialog-heading"><div><p class="eyebrow">Catalog</p><h2>Add a new book</h2></div><button class="close-button" value="cancel" aria-label="Close">×</button></div><label>Title<input name="title" required placeholder="e.g. The Left Hand of Darkness" /></label><label>Author<input name="author" required placeholder="e.g. Ursula K. Le Guin" /></label><div class="form-row"><label>Category<input name="category" required placeholder="Fiction" /></label><label>Copies<input name="copies" type="number" min="1" value="1" required /></label></div><button class="primary-button" value="default">Add book to catalog</button></form></dialog>
+    <script src="script.js"></script>
+  </body>
+</html>
